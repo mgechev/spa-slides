@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="./css/reveal.css" />
+        <link rel="stylesheet" href="./css/theme/default.css" />
+        <link rel="stylesheet" href="./css/highlightjs.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1 style="text-align: left;">Single-Page Applications</h1>
+                    <p style="margin-bottom: 80px;">
+                        <ul style="float: left;">
+                            <li><a href="http://blog.mgechev.com/">Minko Gechev</a></li>
+                            <li><a href="http://github.com/mgechev">github.com/mgechev</a></li>
+                            <li><a href="http://twitter.com/mgechev">twitter.com/mgechev</a></li>
+                        </ul>
+                    </p>
+                </section>
+                <section>
+                    <h2>Content</h2>
+                    <ul>
+                        <li>SPA?</li>
+                        <li>Architecture</li>
+                        <li>Packaging</li>
+                        <li>Run-time state</li>
+                        <li>Optimisations</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>SPA</h2>
+                    <div class="spa-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="600" width="600" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                            <image xlink:href="./images/spa.jpg" width="600" height="600" x="0" y="0" z-index="1" />
+                            <path id="s1" d="M 0 0 600 600 " stroke-width="14" fill="none" stroke="red" z-index="200" style="visibility: hidden;" />
+                            <path id="s2" d="M 600 0 0 600 " stroke-width="14" fill="none" stroke="red" z-index="200" style="visibility: hidden;" />
+                        </svg>
+                    </div>
+                    <script>
+                        (function () {
+                            function animateStroke(path, duration) {
+                                path.style.visibility = 'visible';
+                                var length = path.getTotalLength();
+                                path.style.transition = path.style.WebkitTransition =
+                                  'none';
+                                path.style.strokeDasharray = length + ' ' + length;
+                                path.style.strokeDashoffset = length;
+                                path.getBoundingClientRect();
+                                path.style.transition = path.style.WebkitTransition =
+                                  'stroke-dashoffset ' + duration + 's ease-in-out';
+                                path.style.strokeDashoffset = '0';
+                            }
+                            document.querySelector('.spa-container').onclick = function () {
+                                animateStroke(document.querySelector('#s1'), 1);
+                                setTimeout(function () {
+                                    animateStroke(document.querySelector('#s2'), 1);
+                                }, 1000);
+                            };
+                        }());
+                    </script>
+                </section>
+                <section>
+                    <h2>SPA</h2>
+                    <img src="./images/spa-real.jpg" alt="" />
+                </section>
+                <section>
+                    <h2>Overview</h2>
+                    <img src="./images/communication-spa.png" alt="" />
+                </section>
+                <section>
+                    <h2>DOM</h2>
+                    <ul>
+                        <li>Generated from the templates</li>
+                        <li>Emit events (different handlers)</li>
+                        <li>
+                            Write-only!
+                            <ul>
+                                <li>performance</li>
+                                <li>consistency</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Model</h2>
+                    <ul>
+                        <li>Holds the data in-memory</li>
+                        <li>
+                            Responsible for storing and fetching itself
+                            <ul>
+                                <li>
+                                    Additional "services"
+                                    <ul>
+                                        <li>Repository</li>
+                                        <li>Gateway/Data mapper</li>
+                                    </ul> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Angular</h2>
+                    <pre>
+                        <code class="javascript">
+function PhoneListCtrl($scope, PhonesCollection) {
+    $scope.phones = PhonesCollection.getPhones(); //Synchronous, resolve...
+    $scope.removeClicked = function (phone) {
+        $scope.phones.splice($scope.phones.indexOf(phone), 1);
+        PhonesCollection.setPhones($scope.phones);
+    };
+}
+                        </code>
+                    </pre>
+                </section>
+            </div>
+        </div>
+        <script src="./js/reveal.js"></script>
+        <script src="./js/highlightjs.js"></script>
+        <script>
+            Reveal.initialize({ history: true });
+            hljs.initHighlightingOnLoad();
+        </script>
+    </body>
+</html>
