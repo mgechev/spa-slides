@@ -5,6 +5,20 @@
         <link rel="stylesheet" href="./css/reveal.css" />
         <link rel="stylesheet" href="./css/theme/default.css" />
         <link rel="stylesheet" href="./css/theme/highlightjs.css">
+        <style>
+            .jungle-text {
+                -webkit-transition: 1s -webkit-transform, opacity;
+                -webkit-transform: scale(10) rotateZ(0deg);
+                opacity: 0;
+                display: none;
+                color: red !important;
+            }
+            .jungle-text-show {
+                -webkit-transform: scale(1) rotateZ(40deg);
+                display: block;
+                opacity: 1
+            }
+        </style>
     </head>
     <body>
         <div class="reveal">
@@ -66,42 +80,72 @@
                     <img src="./images/spa-real.jpg" alt="" />
                 </section>
                 <section>
-                    <h2>MV* frameworks</h2>
-                    <ul>
-                        <li>Backbone.js</li>
-                        <li>AngularJS</li>
-                        <li>Ember.js</li>
-                        <li>KnockoutJS</li>
-                        <li>Dojo</li>
-                        <li>YUI</li>
-                        <li>Agility.js</li>
-                        <li>Knockback.js</li>
-                        <li>CanJS</li>
-                        <li>Maria</li>
-                        <li>Polymer</li>
-                        <li>cujoJS</li>
-                        <li>dermis</li>
-                        <li>Montage</li>
-                        <li>Ext.js</li>
-                        <li>Sammy.js</li>
-                        <li>Strapes</li>
-                        <li>Epitome</li>
-                        <li>soma.js</li>
-                        <li>DUEL</li>
-                        <li>Kendo UI</li>
-                        <li>PureMVC</li>
-                        <li>Olives</li>
-                        <li>PlastronJS</li>
-                        <li>Dijon</li>
-                        <li>rAppid.js</li>
-                        <li>Funnyface.js</li>
-                        <li>Aria Templates</li>
-                        <li>React</li>
-                        <li>SAPTUI5</li>
-                    </ul>
+                    <section data-background="images/jungle.jpg">
+                        <h3 id="mvc-headline">MV* frameworks</h3>
+                        <h1 class="jungle-text">Welcome to the jungle!</h1>
+                        <script>
+                            document.getElementById('mvc-headline').onclick = function () {
+                                document.getElementsByClassName('jungle-text')[0].classList.add('jungle-text-show');
+                            };
+                        </script>
+                    </section>
+                    <section>
+                        <h2>MV* frameworks</h2>
+                        <ul>
+                            <li class="fragment">CanJS</li>
+                            <li class="fragment">Maria</li>
+                            <li class="fragment">Polymer</li>
+                            <li class="fragment">cujoJS</li>
+                            <li class="fragment">dermis</li>
+                            <li class="fragment">Montage</li>
+                            <li class="fragment">Sammy.js</li>
+                            <li class="fragment">Strapes</li>
+                            <li class="fragment">Epitome</li>
+                            <li class="fragment">Ext.js</li>
+                        </ul>
+                        <ul>
+                            <li class="fragment">AngularJS</li>
+                            <li class="fragment">Ember.js</li>
+                            <li class="fragment">KnockoutJS</li>
+                            <li class="fragment">Dojo</li>
+                            <li class="fragment">YUI</li>
+                            <li class="fragment">Agility.js</li>
+                            <li class="fragment">soma.js</li>
+                            <li class="fragment">DUEL</li>
+                            <li class="fragment">Kendo UI</li>
+                            <li class="fragment">PureMVC</li>
+                        </ul>
+                        
+                        <ul>
+                            <li class="fragment">Backbone.js</li>
+                            <li class="fragment">Knockback.js</li>
+                            <li class="fragment">Olives</li>
+                            <li class="fragment">PlastronJS</li>
+                            <li class="fragment">Dijon</li>
+                            <li class="fragment">rAppid.js</li>
+                            <li class="fragment">Funnyface.js</li>
+                            <li class="fragment">Aria Templates</li>
+                            <li class="fragment">React</li>
+                            <li class="fragment">SAPTUI5</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>and wait for it...</h2>
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">Aura.js</li>
+                            <li class="fragment" data-fragment-index="2">ScaleApp</li>
+                            <li class="fragment" data-fragment-index="3">Kernel.js</li>
+                            <li class="fragment" data-fragment-index="4">Hydra.js</li>
+                            <li class="fragment" data-fragment-index="5">Terrifically</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>ONLY AngularJS</h2>
+                        <h3 class="fragment">...and a bit Backbone.js</h3>
+                    </section>
                 </section>
                 <section>
-                    <h2>Overview</h2>
+                    <h2>Conceptual overview</h2>
                     <img src="./images/communication-spa.png" alt="" />
                 </section>
                 <section>
@@ -138,7 +182,7 @@
                         </ul>
                     </section>
                     <section>
-                        <h2>Angular</h2>
+                        <h2>AngularJS</h2>
                         <pre>
                             <code class="javascript">
     function PhoneListCtrl($scope, PhonesCollection) {
@@ -194,7 +238,7 @@
                         </ul>
                     </section>
                     <section>
-                        <h2>Angular</h2>
+                        <h2>AngularJS</h2>
                         <pre>
                             <code>
 <div ng-controller="PhonesListCtrl">
@@ -229,11 +273,22 @@ In object-oriented programming, the single responsibility principle states that 
                     </ul>
                 </section>
                 <section>
-                    <h2>How is in Angularjs</h2>
+                    <h2>How is in AngularJS</h2>
                     <ul>
                         <li>We have controllers!</li>
                         <li>They glue the view and the model</li>
-                        <li>They glue the view and the model</li>
+                        <li>They look a bit like the code-behinds<br />in ASP.NET WebForms</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>How to make it maintainable?</h3>
+                    <h2 class="fragment">Modularity!</h3>
+                    <h3 class="fragment">...but everything should have its limits</h3>
+                </section>
+                <section>
+                    <h2>Why modularity?</h2>
+                    <ul>
+                        <li class="fragment">Independent modules with strongly defined interface</li>
                     </ul>
                 </section>
             </div>
