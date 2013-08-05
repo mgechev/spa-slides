@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="./css/theme/highlightjs.css">
         <style>
             .jungle-text {
-                -webkit-transition: 1s -webkit-transform, opacity;
                 -webkit-transform: scale(10) rotateZ(0deg);
                 opacity: 0;
                 display: none;
@@ -77,7 +76,7 @@
                 </section>
                 <section>
                     <h2>SPA</h2>
-                    <img src="./images/spa-real.jpg" alt="" />
+                    <img src="./images/spa-real.jpg" width="600" alt="" />
                 </section>
                 <section>
                     <section data-background="images/jungle.jpg">
@@ -268,7 +267,7 @@ In object-oriented programming, the single responsibility principle states that 
                 <section>
                     <h2>Why not...</h2>
                     <ul>
-                        <li>View reffers to it's template and is being rendered by a rendering enging</li>
+                        <li>View refers to it's template and is being rendered by a template engine</li>
                         <li>Model triggers events on change, the view captures these events and update itself</li>
                     </ul>
                 </section>
@@ -289,6 +288,126 @@ In object-oriented programming, the single responsibility principle states that 
                     <h2>Why modularity?</h2>
                     <ul>
                         <li class="fragment">Independent modules with strongly defined interface</li>
+                        <li class="fragment">Abstraction</li>
+                        <li class="fragment">Each module should do ONE thing</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Okay we can achieve SOLID?</h3>
+                    <h3 class="fragment">...but what about GRASP?</h3>
+                    <ul>
+                        <li class="fragment">Strongly coupled modules sucks!</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>So we need mediator?</h3>
+                    <h2 class="fragment">Publish/subscribe</h2>
+                    <ul class="fragment">
+                        <li>In may be more than 90% of the frameworks above!</li>
+                        <li>And yes, AngularJS is in these 90%</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>AngularJS</h2>
+                    <pre>
+                        <code class="javascript">
+    function ParentCtrl($scope) {
+        $scope.parentMethod = function () {
+            /* body */
+        };
+        $scope.$on('event-name', function (event, param) {
+            /* body */
+        });
+    }
+
+    function ChildCtrl($scope) {
+        $scope.childMethod = function () {
+            /* body */
+        };
+        $scope.parentMethod();
+        $scope.$emit('event-name', { /* parameter */});
+    }
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>Sample implementation</h2>
+                    <pre>
+                        <code class="javascript">
+    var pubsub = {};
+    (function(q) {
+        var topics = {};
+        q.publish = function (topic, args) {
+            if (!topics[topic]) {
+                return false;
+            }
+            var subscribers = topics[topic],
+                len = subscribers ? subscribers.length : 0;
+            while (len--) {
+                subscribers[len].call(null, topic, args);
+            }
+            return this;
+        };
+        q.subscribe = function (topic, func) {
+            if (!topics[topic]) {
+                topics[topic] = [];
+            }
+            topics[topic].push(func);
+            return this;
+        };
+    }(pubsub));
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>Code organisation</h2>
+                    <ul style="font-size: 25px; line-height: 30px;">
+                        <li>
+                        js
+                            <ul>
+                                <li>
+                                    controllers
+                                    <ul>
+                                        <li>home
+                                            <ul>
+                                                <li>MainCtrl.js</li>
+                                                <li>FormCtrl.js</li>
+                                            </ul> 
+                                        </li>
+                                        <li>contacts</li>
+                                    </ul>
+                                </li>
+                                <li>directives</li>
+                                <li>filters</li>
+                                <li>animations</li>
+                                <li>animations</li>
+                            </ul>
+                        </li>
+                        <li>
+                        partials
+                            <ul>
+                                <li>
+                                home
+                                    <ul>
+                                        <li>master.html</li> 
+                                        <li>sidebar.html</li> 
+                                    </ul>
+                                </li>
+                                <li>
+                                    contacts
+                                    <ul>
+                                        <li>master.html</li> 
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>How AngularJS helps?</h2>
+                    <ul>
+                        <li>A lot of boilerplates</li>
+                        <li>Efficient</li>
                     </ul>
                 </section>
             </div>
