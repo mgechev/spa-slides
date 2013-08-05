@@ -4,7 +4,7 @@
         <title></title>
         <link rel="stylesheet" href="./css/reveal.css" />
         <link rel="stylesheet" href="./css/theme/default.css" />
-        <link rel="stylesheet" href="./css/highlightjs.css">
+        <link rel="stylesheet" href="./css/theme/highlightjs.css">
     </head>
     <body>
         <div class="reveal">
@@ -66,6 +66,41 @@
                     <img src="./images/spa-real.jpg" alt="" />
                 </section>
                 <section>
+                    <h2>MV* frameworks</h2>
+                    <ul>
+                        <li>Backbone.js</li>
+                        <li>AngularJS</li>
+                        <li>Ember.js</li>
+                        <li>KnockoutJS</li>
+                        <li>Dojo</li>
+                        <li>YUI</li>
+                        <li>Agility.js</li>
+                        <li>Knockback.js</li>
+                        <li>CanJS</li>
+                        <li>Maria</li>
+                        <li>Polymer</li>
+                        <li>cujoJS</li>
+                        <li>dermis</li>
+                        <li>Montage</li>
+                        <li>Ext.js</li>
+                        <li>Sammy.js</li>
+                        <li>Strapes</li>
+                        <li>Epitome</li>
+                        <li>soma.js</li>
+                        <li>DUEL</li>
+                        <li>Kendo UI</li>
+                        <li>PureMVC</li>
+                        <li>Olives</li>
+                        <li>PlastronJS</li>
+                        <li>Dijon</li>
+                        <li>rAppid.js</li>
+                        <li>Funnyface.js</li>
+                        <li>Aria Templates</li>
+                        <li>React</li>
+                        <li>SAPTUI5</li>
+                    </ul>
+                </section>
+                <section>
                     <h2>Overview</h2>
                     <img src="./images/communication-spa.png" alt="" />
                 </section>
@@ -84,36 +119,122 @@
                     </ul>
                 </section>
                 <section>
-                    <h2>Model</h2>
+                    <section>
+                        <h2>Model</h2>
+                        <ul>
+                            <li>Holds the data in-memory</li>
+                            <li>
+                                Responsible for storing and fetching itself
+                                <ul>
+                                    <li>
+                                        Additional "services"
+                                        <ul>
+                                            <li>Repository</li>
+                                            <li>Gateway/Data mapper</li>
+                                        </ul> 
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Angular</h2>
+                        <pre>
+                            <code class="javascript">
+    function PhoneListCtrl($scope, PhonesCollection) {
+        $scope.phones = PhonesCollection.getPhones(); //Synchronous, resolve...
+        $scope.removeClicked = function (phone) {
+            $scope.phones.splice($scope.phones.indexOf(phone), 1);
+            PhonesCollection.setPhones($scope.phones);
+        };
+    }
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <h2>Repository</h2>
+                        <blockquote cite="http://martinfowler.com/eaaCatalog/repository.html">
+    Mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects.
+                        </blockquote>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Views</h2>
+                        <img src="images/gmail.png" alt="" />
+                    </section>
+                    <section>
+                        <h2>Views</h2>
+                        <ul>
+                            <li>Rendered from templates</li>
+                            <li>Affect on the models</li>
+                            <li>Multiple views depending on the same model (events)</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Templates</h2>
+                        <pre>
+                            <code class="html">
+<ul>
+    {{#phones}}
+        <li>{{phone}}</li>
+    {{/phones}}
+</ul>
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <h2>Templates</h2>
+                        <ul>
+                            <li>Save us from complex concatenations</li>
+                            <li>Build DOM by given model and rules</li>
+                            <li>Efficiency</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Angular</h2>
+                        <pre>
+                            <code>
+<div ng-controller="PhonesListCtrl">
+    <ul>
+        <li ng-repeat="phone in phones">{{phone.name}}</li>
+    </ul>
+</div>
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+                <section>
+                    <h1>Controllers must die?</h1>
+                </section>
+                <section>
+                    <h2>Controllers responsibilities</h2>
+                    <blockquote cite="http://spinejs.com/docs/controllers">
+Controllers deal with adding and responding to DOM events, rendering templates and keeping views and models in sync
+                    </blockquote>
+                </section>
+                <section>
+                    <h2>Isn't that too much?</h2>
+                    <blockquote>
+In object-oriented programming, the single responsibility principle states that every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class. All its services should be narrowly aligned with that responsibility.
+                    </blockquote>
+                </section>
+                <section>
+                    <h2>Why not...</h2>
                     <ul>
-                        <li>Holds the data in-memory</li>
-                        <li>
-                            Responsible for storing and fetching itself
-                            <ul>
-                                <li>
-                                    Additional "services"
-                                    <ul>
-                                        <li>Repository</li>
-                                        <li>Gateway/Data mapper</li>
-                                    </ul> 
-                                </li>
-                            </ul>
-                        </li>
+                        <li>View reffers to it's template and is being rendered by a rendering enging</li>
+                        <li>Model triggers events on change, the view captures these events and update itself</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>Angular</h2>
-                    <pre>
-                        <code class="javascript">
-function PhoneListCtrl($scope, PhonesCollection) {
-    $scope.phones = PhonesCollection.getPhones(); //Synchronous, resolve...
-    $scope.removeClicked = function (phone) {
-        $scope.phones.splice($scope.phones.indexOf(phone), 1);
-        PhonesCollection.setPhones($scope.phones);
-    };
-}
-                        </code>
-                    </pre>
+                    <h2>How is in Angularjs</h2>
+                    <ul>
+                        <li>We have controllers!</li>
+                        <li>They glue the view and the model</li>
+                        <li>They glue the view and the model</li>
+                    </ul>
                 </section>
             </div>
         </div>
