@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="./css/main.css" />
     </head>
     <body>
-        <div ng-view>
+        <div ng-view ng-animate="{ enter: 'scale-in', leave: 'scale-out' }" style="position: relative;">
         </div>
         <script src="./js/libs/angular.min.js"></script>
         <script src="./js/app/app.js"></script>

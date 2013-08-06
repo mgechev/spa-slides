@@ -1,0 +1,17 @@
+@import "compass/css3"
+
+.fade-in
+    @include transition(transform, .5s)
+    @include transform(rotate(90deg) scale(0))
+    position: absolute
+
+.fade-in-active
+    @include transform(rotate(0deg) scale(1))
+
+.fade-out
+    @include transition(transform, .5s)
+    @include transform(rotate(0deg) scale(1))
+    position: absolute
+
+.fade-out-active
+    @include transform(rotate(90deg) scale(0))
