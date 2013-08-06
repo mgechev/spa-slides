@@ -1,0 +1,19 @@
+<table class="table">
+    <tr ng-repeat="laptop in laptops">
+        <td>
+            <a href="#/laptop/{{laptop.id}}">
+                <img ng-src="{{getLaptopPhoto(laptop)}}" alt="" />
+            </a>
+        </td>
+        <td>
+            <ul>
+                <li><span ng-bind="laptop.hdd"></span>GB, <span ng-bind="laptop.hddType"></span></li>
+                <li><span ng-bind="laptop.speed"></span>GHz</li>
+                <li><span ng-bind="laptop.ram"></span>GB</li>
+            </ul>
+        </td>
+        <td>
+            <button class="btn btn-danger" ng-click="removeLaptop(laptop);">Remove</button>
+        </td>
+    </tr>
+</table>
