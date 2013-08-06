@@ -1,0 +1,11 @@
+[
+    { "id": 1, "photo": "photo1.jpg", "speed": 2.7, "ram": 16, "hdd": 512, "hddType": "SSD" },
+    { "id": 2, "photo": "photo2.jpg", "speed": 1.7, "ram": 4, "hdd": 400, "hddType": "PATA" },
+    { "id": 3, "photo": "photo3.jpg", "speed": 2.0, "ram": 8, "hdd": 500, "hddType": "SSD" },
+    { "id": 4, "photo": "photo4.jpg", "speed": 1.9, "ram": 8, "hdd": 500, "hddType": "PATA" },
+    { "id": 5, "photo": "photo5.jpg", "speed": 2.3, "ram": 16, "hdd": 1024, "hddType": "PATA" },
+    { "id": 6, "photo": "photo6.jpg", "speed": 2.4, "ram": 16, "hdd": 512, "hddType": "SSD" },
+    { "id": 6, "photo": "photo7.jpg", "speed": 2.8, "ram": 16, "hdd": 812, "hddType": "SCSI" },
+    { "id": 8, "photo": "photo8.jpg", "speed": 1.1, "ram": 2, "hdd": 80, "hddType": "SSD" },
+    { "id": 9, "photo": "photo9.jpg", "speed": 1.2, "ram": 4, "hdd": 512, "hddType": "SSD" }
+]
