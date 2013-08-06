@@ -40,7 +40,6 @@
                         <li>Life-cycle</li>
                         <li>Packaging and organisation</li>
                         <li>Introduction to AngularJS</li>
-                        <li>Deployment</li>
                     </ul>
                 </section>
                 <section>
@@ -250,8 +249,8 @@
                         </pre>
                     </section>
                 </section>
-                <section>
-                    <h1>Controllers must die?</h1>
+                <section data-background="images/old.jpg">
+                    <h1>Controllers are old-fashioned?</h1>
                 </section>
                 <section>
                     <h2>Controllers responsibilities</h2>
@@ -390,7 +389,12 @@ In object-oriented programming, the single responsibility principle states that 
                                 </li>
                                 <li>directives</li>
                                 <li>filters</li>
-                                <li>animations</li>
+                                <li>
+                                    services
+                                    <ul>
+                                        <li>models</li>
+                                    </ul> 
+                                </li>
                                 <li>animations</li>
                             </ul>
                         </li>
@@ -621,14 +625,61 @@ myModule.directive('directiveName', function factory(injectables) {
                     <h2>Services</h2>
                     <ul>
                         <li class="fragment">
-                        Singletons that carry out specific tasks common to web apps.
+                            Lazy created singletons that carry out specific tasks common to web apps.
                         </li>
                         <li class="fragment">
-                        They can be easily combined with the already mentioned dependency injection.
+                            They can be easily combined with the already mentioned dependency injection.
                         </li>
                     </ul>
                 </section>
                 <section>
+                    <h2>Services</h2>
+                    <p>
+                        <pre>
+                            <code class="javascript">
+myModule.service('LocalStorage', function () {
+    var storage = {};
+    $(window).unload(function () {
+        localStorage.setItem('key', JSON.stringify(storage));
+    });
+    return {
+        get: function (key) {
+            return storage[key];
+        },
+        set: function (key, value) {
+            storage[key] = value;
+        }
+    };
+});
+                            </code>
+                        </pre>
+                    </p>
+                </section>
+                <section>
+                    <h2>Services</h2>
+                    <p>
+                        Also used for creating Models:
+
+                        <pre>
+                            <code class="javascript">
+myModule.service('LaptopCollection', function () {
+
+    var laptops;
+
+    this.getLaptops = function () {
+        //body
+    };
+
+    this.getLaptopById = function () {
+        //body
+    };
+});
+                            </code>
+                        </pre>
+                    </p>
+                </section>
+                <section data-background="images/demo.jpg">
+                    <h1>Live Demo</h1>
                 </section>
             </div>
         </div>
