@@ -37,9 +37,10 @@
                     <ul>
                         <li>SPA?</li>
                         <li>Architecture</li>
-                        <li>Packaging</li>
-                        <li>Run-time state</li>
-                        <li>Optimisations</li>
+                        <li>Life-cycle</li>
+                        <li>Packaging and organisation</li>
+                        <li>Introduction to AngularJS</li>
+                        <li>Deployment</li>
                     </ul>
                 </section>
                 <section>
@@ -92,7 +93,7 @@
                         <h2>MV* frameworks</h2>
                         <ul>
                             <li class="fragment">CanJS</li>
-                            <li class="fragment">Maria</li>
+                            <li class="fragment" style="color: #E8D500">Maria</li>
                             <li class="fragment">Polymer</li>
                             <li class="fragment">cujoJS</li>
                             <li class="fragment">dermis</li>
@@ -100,23 +101,23 @@
                             <li class="fragment">Sammy.js</li>
                             <li class="fragment">Strapes</li>
                             <li class="fragment">Epitome</li>
-                            <li class="fragment">Ext.js</li>
+                            <li class="fragment" style="color: #E8D500">Ext.js</li>
                         </ul>
                         <ul>
-                            <li class="fragment">AngularJS</li>
-                            <li class="fragment">Ember.js</li>
-                            <li class="fragment">KnockoutJS</li>
+                            <li class="fragment" style="color: #E88700">AngularJS</li>
+                            <li class="fragment" style="color: #E88700">Ember.js</li>
+                            <li class="fragment" style="color: #E8D500">KnockoutJS</li>
                             <li class="fragment">Dojo</li>
-                            <li class="fragment">YUI</li>
+                            <li class="fragment" style="color: #E8D500">YUI</li>
                             <li class="fragment">Agility.js</li>
                             <li class="fragment">soma.js</li>
                             <li class="fragment">DUEL</li>
-                            <li class="fragment">Kendo UI</li>
+                            <li class="fragment" style="color: #E8D500">Kendo UI</li>
                             <li class="fragment">PureMVC</li>
                         </ul>
                         
                         <ul>
-                            <li class="fragment">Backbone.js</li>
+                            <li class="fragment" style="color: #E88700">Backbone.js</li>
                             <li class="fragment">Knockback.js</li>
                             <li class="fragment">Olives</li>
                             <li class="fragment">PlastronJS</li>
@@ -124,7 +125,7 @@
                             <li class="fragment">rAppid.js</li>
                             <li class="fragment">Funnyface.js</li>
                             <li class="fragment">Aria Templates</li>
-                            <li class="fragment">React</li>
+                            <li class="fragment" style="color: #E8D500">React</li>
                             <li class="fragment">SAPTUI5</li>
                         </ul>
                     </section>
@@ -331,6 +332,16 @@ In object-oriented programming, the single responsibility principle states that 
                     </pre>
                 </section>
                 <section>
+                    <h2>Publish/subscribe is awesome!!!?</h2>
+                    <h3 class="fragment">...well...</h3>
+                    <ul class="fragment" style="color: #FF0055;">
+                        <li>Event collisions</li>
+                        <li>Complexity</li>
+                        <li>Hard for unit-testing</li>
+                        <li>Hard for manage events</li>
+                    </ul>
+                </section>
+                <section>
                     <h2>Sample implementation</h2>
                     <pre>
                         <code class="javascript">
@@ -405,9 +416,216 @@ In object-oriented programming, the single responsibility principle states that 
                 </section>
                 <section>
                     <h2>How AngularJS helps?</h2>
-                    <ul>
+                    <ul class="fragment">
                         <li>A lot of boilerplates</li>
-                        <li>Efficient</li>
+                        <li>Efficiency</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Introduction to AngularJS</h1>
+                </section>
+                <section>
+                    <h2>AngularJS' building blocks</h2>
+                    <ul>
+                        <li class="fragment">Partials</li>
+                        <li class="fragment">Controllers</li>
+                        <li class="fragment">Directives</li>
+                        <li class="fragment">Services</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Partials</h2>
+                    We already know about them...
+                    <pre>
+                        <code>
+
+&lt;html ng-app&gt;
+ &lt;!-- Body tag augmented with ngController directive  --&gt;
+ &lt;body ng-controller=&quot;MyController&quot;&gt;
+   &lt;input ng-model=&quot;foo&quot; value=&quot;bar&quot;&gt;
+   &lt;!-- Button tag with ng-click directive, and
+          string expression 'buttonText'
+          wrapped in &quot;{{ }}&quot; markup --&gt;
+   &lt;button ng-click=&quot;changeFoo()&quot;&gt;{{buttonText}}&lt;/button&gt;
+   &lt;script src=&quot;angular.js&quot;&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>Partials building blocks</h2>
+                    <ul>
+                        <li class="fragment">HTML</li>
+                        <li class="fragment">Directives</li>
+                        <li class="fragment">Filters</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Partials</h2>
+                    <ul>
+                        <li class="fragment">Custom tags and attributes?! - <strong>data</strong> prefix</li>
+                        <li class="fragment">The HTML is your template!</li>
+                    </ul>
+                    <br />
+                    <br />
+                    <br />
+                    <p class="fragment">
+                    No more:
+                    </p>
+                    <pre class="fragment">
+                        <code class="html">
+<script id ="getting-started-1" type="text/x-handlebars-template">
+<!-- Template here -->
+</script>
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>Controllers</h2>
+                    <blockquote cite="">
+In Angular, a controller is a JavaScript function(type/class) that is used to augment instances of angular Scope, excluding the root scope.
+                    </blockquote>
+                    <ul>
+                        <li class="fragment">Set up the initial state of a scope object.</li>
+                        <li class="fragment">Add behavior to the scope object.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Simple example</h2>
+                    <pre>
+                        <code class="html">
+&lt;div ng-controller="MainCtrl"&gt;
+    &lt;button ng-click="foo()">Cick me!&lt;/button&gt;
+&lt;/div&gt;
+                        </code>
+                    </pre>
+                    <pre>
+                        <code class="javascript">
+function MainCtrl($scope) {
+    $scope.foo = function () {
+        alert('bar');
+    };
+}
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>What we have?</h2>
+                    <ul>
+                        <li class="fragment">Dependency injection</li>
+                        <li class="fragment">Abstraction</li>
+                        <li class="fragment"><a href="https://github.com/mgechev/angular-aop" target="_blank">*AOP</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>But what is scope?</h2>
+                    <ul>
+                        <li class="fragment">A simple JavaScript object</li>
+                        <li class="fragment">Refers to the model</li>
+                        <li class="fragment">Watch expressions</li>
+                        <li class="fragment">Propagate events</li>
+                        <li class="fragment">Prototypically inherits it's parent</li>
+                    </ul>
+                </section>
+                <section>
+                    <pre>
+                        <code class="html">
+&lt;div ng-controller="ParentCtrl"&gt;
+    &lt;div ng-controller="ChildCtrl"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                        </code>
+                    </pre>
+                    <pre>
+                        <code class="javascript">
+function ParentCtrl($scope) {
+    $scope.foo = function () {
+        console.log('foo');
+    };
+    console.log($scope.baz); //undefined
+}
+
+function ChildCtrl($scope) {
+    $scope.baz = 'baz';
+    $scope.foo();           //'foo'
+}
+                        </code>
+
+                    </pre>
+                </section>
+                <section>
+                    <h2>Directives</h2>
+                    <ul>
+                        <li class="fragment">Developing DNS over the HTML</li>
+                        <li class="fragment">Teaching the HTML to new tricks</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Directives example</h2>
+                    <pre>
+                        <code class="html">
+&lt;blink&gt;I know you all miss me!&lt;/blink&gt;
+&lt;dialog title=&quot;Awesome!&quot;&gt;
+    &lt;rating max=&quot;5&quot; min=&quot;1&quot; type=&quot;stars&quot; /&gt;
+&lt;/dialog&gt;
+                        </code>
+                    </pre>
+                    <div class="fragment">
+                        What about the standards?
+                    </div>
+                </section>
+                <section>
+                    <h2>Directives</h2>
+                    <div>Directives can be found using tag name, attribute name, class name even a comment...or a combination.</div>
+                    <pre class="fragment">
+                        <code class="javascript">
+myModule.directive('directiveName', function factory(injectables) {
+  var directiveDefinitionObject = {
+    priority: 0,
+    template: 'HTML with other directives and filters...',
+    templateUrl: 'directive.html',
+    replace: false,
+    transclude: false,
+    restrict: 'A',  //Possible values E, A, C, M or any combination
+    scope: false,
+    controller: ["$scope", "$element", "$attrs", "$transclude", "otherInjectables",
+      function($scope, $element, $attrs, $transclude, otherInjectables) { ... }],
+    compile: function compile(tElement, tAttrs, transclude) {
+      return {
+        pre: function preLink(scope, iElement, iAttrs, controller) { ... },
+        post: function postLink(scope, iElement, iAttrs, controller) { ... }
+      }
+    },
+    link: function postLink(scope, iElement, iAttrs) { ... }
+  };
+  return directiveDefinitionObject;
+});
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>Isn't that API very complex?</h3>
+                    <h1 class="fragment">Yes, it is!</h1>
+                    <div class="fragment">The usual case:
+                        <pre>
+                            <code class="javascript">
+myModule.directive('directiveName', function factory(injectables) {
+  return function postLink(scope, iElement, iAttrs) { ... }
+});
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+                <section>
+                    <h2>Services</h2>
+                    <ul>
+                        <li class="fragment">
+                        Singletons that carry out specific tasks common to web apps.
+                        </li>
+                        <li class="fragment">
+                        They can be easily combined with the already mentioned dependency injection.
+                        </li>
                     </ul>
                 </section>
             </div>
