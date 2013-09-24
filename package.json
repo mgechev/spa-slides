@@ -1,0 +1,30 @@
+{
+  "name": "Spa-Slides",
+  "version": "0.0.0",
+  "description": "Slides for my talk about Single-Page Applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mgechev/spa-slides"
+  },
+  "keywords": [
+    "spa",
+    "angularjs",
+    "backbone.js",
+    "mvc",
+    "javascript"
+  ],
+  "author": "Minko Gechev @mgechev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mgechev/spa-slides/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-bower-task": "~0.3.2"
+  }
+}

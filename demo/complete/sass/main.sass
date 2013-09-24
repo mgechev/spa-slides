@@ -1,0 +1,17 @@
+@import "compass/css3"
+
+.scale-in
+    @include transition(transform, .5s)
+    @include transform(rotate(100deg) scale(0))
+    position: absolute
+
+.scale-in-active
+    @include transform(rotate(0deg) scale(1))
+
+.scale-out
+    @include transition(transform, .5s)
+    @include transform(rotate(0deg) scale(1))
+    position: absolute
+
+.scale-out-active
+    @include transform(rotate(100deg) scale(0))

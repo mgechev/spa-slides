@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+    <head>
+        <link rel="stylesheet" href="./css/bootstrap.css" />
+        <link rel="stylesheet" href="./css/main.css" />
+    </head>
+    <body>
+        <div ng-view ng-animate="{ enter: 'scale-in', leave: 'scale-out' }" style="position: relative;">
+        </div>
+        <script src="./js/libs/angular.min.js"></script>
+        <script src="./js/app/app.js"></script>
+        <script src="./js/app/controllers/LaptopsListCtrl.js"></script>
+        <script src="./js/app/controllers/LaptopDetailsCtrl.js"></script>
+        <script src="./js/app/services/Config.js"></script>
+        <script src="./js/app/services/LaptopCollection.js"></script>
+    </body>
+</html>
