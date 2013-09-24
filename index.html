@@ -3,18 +3,19 @@
   <head>
     <title></title>
     <link rel="stylesheet" href="./css/reveal.css" />
-    <link rel="stylesheet" href="./css/theme/default.css" />
+    <link rel="stylesheet" href="./css/theme/serif.css" />
     <link rel="stylesheet" href="./css/theme/highlightjs.css">
     <style>
       .jungle-text {
         -webkit-transform: scale(10) rotateZ(0deg);
         opacity: 0;
-        display: none;
         color: red !important;
+        text-shadow: 0px 0px 20px #000 !important;
+        font-weight: bold !important;
+        -webkit-transition: all .5s;
       }
       .jungle-text-show {
-        -webkit-transform: scale(1) rotateZ(40deg);
-        display: block;
+        -webkit-transform: scale(1) rotateZ(320deg);
         opacity: 1
       }
     </style>
@@ -79,15 +80,15 @@
           <img src="./images/spa-real.jpg" width="600" alt="" />
         </section>
         <section>
-          <section data-background="images/jungle.jpg">
-            <h3 id="mvc-headline">MV* frameworks</h3>
+          <section data-background="images/jungle.jpg" id="jungle-slide">
+            <h3 class="white bold background-text">MV* frameworks</h3>
             <h1 class="jungle-text">Welcome to the jungle!</h1>
+          </section>
             <script>
-              document.getElementById('mvc-headline').onclick = function () {
+              document.getElementById('jungle-slide').onclick = function () {
                 document.getElementsByClassName('jungle-text')[0].classList.add('jungle-text-show');
               };
             </script>
-          </section>
           <section>
             <h2>MV* frameworks</h2>
             <ul>
@@ -250,7 +251,12 @@
           </section>
         </section>
         <section data-background="images/old.jpg">
-          <h1>Controllers are old-fashioned?</h1>
+          <div class="
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;"></div>
+          <h1 class="white bold background-text">Controllers are old-fashioned?</h1>
         </section>
         <section>
           <h2>Controllers responsibilities</h2>
@@ -371,6 +377,7 @@ In object-oriented programming, the single responsibility principle states that 
         </section>
         <section>
           <h2>Code organisation</h2>
+          <code style="max-height: 300px; overflow: auto; display: block;">
           <ul style="font-size: 25px; line-height: 30px;">
             <li>
             js
@@ -417,6 +424,7 @@ In object-oriented programming, the single responsibility principle states that 
               </ul>
             </li>
           </ul>
+          </code>
         </section>
         <section>
           <h2>How AngularJS helps?</h2>
@@ -523,7 +531,19 @@ function MainCtrl($scope) {
           </ul>
         </section>
         <section>
-          <h2>But what is scope?</h2>
+          <h2>Dependency Injection</h2>
+          <blockquote class="twitter-tweet"><p>Dependency injection, or as it&#39;s also known, passing arguments.</p>&mdash; Nicholas C. Zakas (@slicknet) <a href="https://twitter.com/slicknet/statuses/372798743948824576">August 28, 2013</a></blockquote>
+          <p class="fragment">
+            Actually a little bit more:
+            <ul class="fragment">
+              <li>Open/Closed Principle</li>
+              <li>Testability</li>
+            </ul>
+          </p>
+
+        </section>
+        <section>
+          <h2>AngularJS' scope?</h2>
           <ul>
             <li class="fragment">A simple JavaScript object</li>
             <li class="fragment">Refers to the model</li>
@@ -557,6 +577,9 @@ function ChildCtrl($scope) {
             </code>
 
           </pre>
+        </section>
+        <section>
+          <img src="./images/scope-angular.png" alt="">
         </section>
         <section>
           <h2>Directives</h2>
@@ -622,10 +645,36 @@ myModule.directive('directiveName', function factory(injectables) {
           </div>
         </section>
         <section>
+          <h2>Keep your DOM here!</h2>
+          <p>
+            If you find yourself doing DOM manipulations in the controller you should create a directive.
+          </p>
+        </section>
+        <section>
+          <h2>Built-in directives</h2>
+          <ul>
+            <li class="fragment">a</li>
+            <li class="fragment">form</li>
+            <li class="fragment">input</li>
+            <li class="fragment">ngClick</li>
+            <li class="fragment">ngDisabled</li>
+            <li class="fragment">ngSrc</li>
+            <li class="fragment">ngHref</li>
+            <li class="fragment">ngMouseleave</li>
+            <li class="fragment">select</li>
+            <li class="fragment">many, many others...</li>
+          </ul>
+        </section>
+        <section>
           <h2>Services</h2>
           <ul>
             <li class="fragment">
               Lazy created singletons that carry out specific tasks common to web apps.
+              <ul class="fragment">
+                <li>localStorage</li>
+                <li>OAuth</li>
+                <li>etc...</li>
+              </ul>
             </li>
             <li class="fragment">
               They can be easily combined with the already mentioned dependency injection.
@@ -637,17 +686,16 @@ myModule.directive('directiveName', function factory(injectables) {
           <p>
             <pre>
               <code class="javascript">
-myModule.service('LocalStorage', function () {
-  var storage = {};
-  $(window).unload(function () {
-    localStorage.setItem('key', JSON.stringify(storage));
-  });
+myModule.service('LocalStorage', function (Config) {
+  var storageKey = Config.STORAGE_KEY,
+      storage = JSON.parse(localStorage.getItem(storageKey)) || {};
   return {
     get: function (key) {
       return storage[key];
     },
     set: function (key, value) {
       storage[key] = value;
+      localStorage.setItem(storageKey, JSON.stringify(storage));
     }
   };
 });
@@ -667,26 +715,41 @@ myModule.service('LaptopCollection', function () {
   var laptops;
 
   this.getLaptops = function () {
-    //body
+    return laptops;
   };
 
-  this.getLaptopById = function () {
-    //body
+  this.getLaptopById = function (id) {
+    return laptops.filter(function (l) {
+      return l.id === id;
+    })[0];
   };
 });
               </code>
             </pre>
           </p>
         </section>
-        <section data-background="images/demo.jpg">
-          <h1>Live Demo</h1>
+        <section>
+          <h2>AngularJS UI (1)</h2>
+          <ul>
+            <li>Set of UI components</li>
+            <li>Wrapped into directives</li>
+            <li>Well tested</li>
+          </ul>
+        </section>
+        <section>
+          <h2>AngularJS UI (2)</h2>
+          <ul>
+            <li>ui-router</li>
+            <li>ui-select2 (select2)</li>
+            <li>bootstrap</li>
+          </ul>
         </section>
       </div>
     </div>
     <script src="./js/reveal.js"></script>
     <script src="./js/highlightjs.js"></script>
     <script>
-      Reveal.initialize({ history: true });
+      Reveal.initialize({ history: true, transition: 'linear' });
       hljs.initHighlightingOnLoad();
     </script>
   </body>
